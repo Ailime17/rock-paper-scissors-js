@@ -12,14 +12,15 @@ let getComputerChoice = function() {
     }
 
 }
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
+// let computerSelection = getComputerChoice();
+// console.log(computerSelection);
 
-const playerSelection = prompt("Choose your weapon: \"rock\",\"paper\" or \"scissors\".");
-const playerSelectionCaseIns = playerSelection.toLowerCase();
-console.log(playerSelectionCaseIns);
+// const playerSelection = prompt("Choose your weapon: \"rock\",\"paper\" or \"scissors\".");
+// const playerSelectionCaseIns = playerSelection.toLowerCase();
+// console.log(playerSelectionCaseIns);
 
 function playRound(playerSelectionCaseIns, computerSelection) {
+  
 
     if (playerSelectionCaseIns == "rock" && computerSelection == "scissors") {
         let messageOne = `You win: ${playerSelectionCaseIns} beats ${computerSelection}!`;
@@ -45,19 +46,63 @@ function playRound(playerSelectionCaseIns, computerSelection) {
         let messageTwo = `You lose: ${computerSelection} beats ${playerSelectionCaseIns}!`;
         return messageTwo;
     }
-    if (playerSelectionCaseIns == computerSelection) {
+    if (playerSelectionCaseIns === computerSelection) {
         let messageThree = `It's a tie! You both chose ${playerSelectionCaseIns}.`;
         return messageThree;
     }
-    if (playerSelectionCaseIns =! "rock" || "paper" || "scissors") {
-        let altMessage = alert(`This is not an option! Please refresh the page and try again.`);
+    if (playerSelectionCaseIns ==! "rock" || "paper" || "scissors") {
+        let altMessage = alert(`${playerSelectionCaseIns} is not an option! Please refresh the page and try again.`);
         return altMessage; 
     }
+  
   }
-console.log(playRound(playerSelectionCaseIns, computerSelection));
+// console.log(playRound(playerSelectionCaseIns, computerSelection));
 
-// let game = function () {
-//     for (let i = 0; i < 5; i++){
-        
-//     }
-// }
+
+
+
+let game = function () {
+    let totalScore = 0;
+    for (let i = 0; i < 5; i++){
+        let computerSelection = getComputerChoice();
+        console.log(computerSelection);
+
+        const playerSelection = prompt("Choose your weapon: \"rock\",\"paper\" or \"scissors\".");
+        const playerSelectionCaseIns = playerSelection.toLowerCase();
+
+        console.log(playerSelectionCaseIns);
+
+        if (playerSelectionCaseIns == "rock" && computerSelection == "scissors") {
+            totalScore++;
+        } 
+        if (playerSelectionCaseIns == "paper" && computerSelection == "rock") {
+            totalScore++;
+        }
+        if ( playerSelectionCaseIns == "scissors" && computerSelection == "paper") {
+            totalScore++;
+        }
+        if (playerSelectionCaseIns == "scissors" && computerSelection == "rock") {
+            totalScore--;
+        } 
+        if (playerSelectionCaseIns == "rock" && computerSelection == "paper") {
+            totalScore--;
+        }
+        if (playerSelectionCaseIns == "paper" && computerSelection == "scissors") {
+            totalScore--;
+        }
+
+        console.log(playRound(playerSelectionCaseIns, computerSelection));
+
+    }
+   
+    if (totalScore > 0) {
+        console.log("Congratulations! You've won this game!");
+    } else if (totalScore < 0) {
+        console.log("You've lost this game! Good luck next time!");
+    } else {
+        console.log("There is no winner or loser in this game. It's a tie!");
+    }
+   
+}
+
+game();
